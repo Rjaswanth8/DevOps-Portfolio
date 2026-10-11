@@ -1,0 +1,2 @@
+.progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 100; pointer-events: none; }
+.progress__bar { height: 100%; background: var(--grad); transform: scaleX(0); transform-origin: left; }

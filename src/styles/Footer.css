@@ -1,0 +1,3 @@
+.footer { padding: 36px 0 44px; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.92rem; }
+.footer__inner { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; }
+.footer__social { display: flex; gap: 10px; }

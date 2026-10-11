@@ -1,0 +1,99 @@
+.wbtn {
+  --level: 0;
+  --tilt: 0deg;
+  --amp: 1;
+  --on-water: #ffffff;
+  position: fixed;
+  right: 20px;
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  z-index: 60;
+  width: 60px;
+  height: 60px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 2px solid color-mix(in srgb, var(--brand) 55%, var(--line));
+  background: var(--surface-solid);
+  color: var(--text);
+  box-shadow: var(--shadow), 0 10px 24px -10px var(--brand);
+  overflow: hidden;
+  clip-path: circle(50%);
+  isolation: isolate;
+
+  opacity: 0;
+  transform: translateY(18px) scale(0.8);
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s, border-color 0.3s;
+}
+:root[data-theme='dark'] .wbtn { --on-water: #070a18; }
+
+.wbtn.is-visible { opacity: 1; transform: none; pointer-events: auto; }
+.wbtn.is-visible:hover { transform: translateY(-3px); border-color: var(--brand); }
+.wbtn.is-visible:active { transform: scale(0.94); }
+
+/* The icon always sits above the water; its color flips once the water passes the middle */
+.wbtn .wbtn__icon {
+  position: relative;
+  z-index: 2;
+  font-size: 1.6rem;
+  color: var(--text);
+  transition: color 0.3s, transform 0.25s;
+}
+.wbtn.is-deep .wbtn__icon { color: var(--on-water); }
+.wbtn:hover .wbtn__icon { transform: translateY(-2px); }
+
+/* Water body: wider and taller than the button so tilting never shows the edges */
+.wbtn__water {
+  position: absolute;
+  z-index: 1;
+  left: -30%;
+  width: 160%;
+  height: 200%;
+  top: calc(115% - var(--level) * 115%);
+  transform-origin: 50% 0;
+  transform: rotate(var(--tilt));
+  background: linear-gradient(180deg, var(--brand), var(--brand-2));
+  will-change: transform, top;
+}
+
+/* Wave layers; --amp grows while you scroll so the surface gets choppy */
+.wbtn__waves {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -15px;
+  height: 16px;
+  transform-origin: 50% 100%;
+  transform: scaleY(var(--amp));
+  pointer-events: none;
+}
+.wbtn__wave {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 200%;
+  height: 100%;
+  animation: wbtn-wave 3.2s linear infinite;
+}
+.wbtn__wave--front { fill: var(--brand); }
+.wbtn__wave--back { fill: var(--brand-2); opacity: 0.55; animation-duration: 5.2s; animation-direction: reverse; }
+@keyframes wbtn-wave { to { transform: translateX(-50%); } }
+
+.wbtn__bubble {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55);
+  animation: wbtn-bubble 3.6s ease-in infinite;
+}
+.wbtn__bubble--a { width: 6px; height: 6px; left: 38%; top: 34px; }
+.wbtn__bubble--b { width: 4px; height: 4px; left: 62%; top: 40px; animation-delay: 1.5s; animation-duration: 4.2s; }
+@keyframes wbtn-bubble {
+  0% { transform: translateY(0); opacity: 0; }
+  25% { opacity: 1; }
+  100% { transform: translateY(-26px); opacity: 0; }
+}
+
+@media (max-width: 520px) {
+  .wbtn { right: 14px; width: 54px; height: 54px; }
+}

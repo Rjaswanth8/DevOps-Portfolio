@@ -1,0 +1,33 @@
+.xp { position: relative; }
+.xp__role {
+  display: flex; align-items: center; gap: 20px; padding: 26px 28px; margin-bottom: 18px;
+  border-color: color-mix(in srgb, var(--brand) 35%, var(--line));
+}
+.xp__logo {
+  width: 56px; height: 56px; border-radius: 17px; display: grid; place-items: center; font-size: 1.5rem; flex: none;
+  background: var(--grad); color: #fff;
+}
+.xp__info { flex: 1; min-width: 0; }
+.xp__info h3 { font-size: clamp(1.2rem, 2.6vw, 1.6rem); font-weight: 800; }
+.xp__info p { color: var(--muted); margin-top: 4px; }
+.xp__when {
+  display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px;
+  background: var(--signal-soft); color: var(--signal); font-size: 0.88rem; font-weight: 600; white-space: nowrap;
+}
+
+.xp__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+.xp__item { padding: 26px; display: flex; flex-direction: column; gap: 14px; }
+.xp__item-head { display: flex; align-items: center; gap: 14px; }
+.xp__ico {
+  width: 42px; height: 42px; border-radius: 13px; display: grid; place-items: center; font-size: 1.2rem; flex: none;
+  background: var(--brand-soft); color: var(--brand);
+}
+.xp__item h4 { font-size: 1.1rem; font-weight: 700; }
+.xp__item p { color: var(--muted); font-size: 0.97rem; }
+.xp__tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 4px; }
+.xp__tags .chip { font-size: 0.8rem; padding: 4px 11px; }
+
+@media (max-width: 820px) {
+  .xp__role { flex-wrap: wrap; padding: 22px; }
+  .xp__grid { grid-template-columns: 1fr; }
+}

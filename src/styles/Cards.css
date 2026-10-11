@@ -1,0 +1,28 @@
+/* Shared by Education and Awards */
+.feature { display: flex; gap: 28px; align-items: flex-start; padding: 38px; max-width: 860px; }
+.feature__badge {
+  width: 68px; height: 68px; border-radius: 20px; display: grid; place-items: center; font-size: 1.9rem; flex: none;
+  background: var(--brand-soft); color: var(--brand);
+}
+.feature__body h3 { font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 800; }
+.feature__sub { margin-top: 6px; color: var(--brand); font-weight: 600; }
+.feature__meta { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 14px; color: var(--muted); font-size: 0.95rem; }
+.feature__meta span { display: inline-flex; align-items: center; gap: 8px; }
+.feature__text { margin-top: 16px; color: var(--muted); max-width: 60ch; }
+
+.feature--award {
+  position: relative; overflow: hidden; border-radius: var(--radius);
+  background: var(--grad); color: #fff; box-shadow: 0 30px 60px -28px var(--brand);
+}
+.feature--award .feature__badge { background: rgba(255, 255, 255, 0.2); color: #fff; animation: award-bob 3.4s ease-in-out infinite; }
+.feature--award .feature__sub,
+.feature--award .feature__text { color: rgba(255, 255, 255, 0.9); }
+.feature--award::after {
+  content: ''; position: absolute; right: -70px; top: -70px; width: 240px; height: 240px; border-radius: 50%;
+  border: 44px solid rgba(255, 255, 255, 0.1); pointer-events: none;
+}
+@keyframes award-bob { 50% { transform: translateY(-6px) rotate(-6deg); } }
+
+@media (max-width: 620px) {
+  .feature { flex-direction: column; gap: 20px; padding: 28px; }
+}
